@@ -19,7 +19,17 @@ public class Marshmallow {
                 "⠀⠀⠀⣙⠻⣟⣯⣿⣽⡛⢹⠛⠛⠛⠛⠒⠙⠀⠚⡻⢽⣻⣯⣿⡟⠁⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⠀⠉⠉⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁⠀⠀⠀⠀⠀";
 
+    private static void respond(String response) {
+        System.out.print(" ");
+        System.out.println(response.replace("\n", "\n "));
+        System.out.println("____________________________________________________________");
+    }
+
     public static void main(String[] args) {
         System.out.println(logo);
+        System.out.println("____________________________________________________________");
+
+        respond("Hello! I'm Marshmallow\nWhat can I do for you?");
+        respond("Bye. Hope to see you again soon!");
     }
 }
