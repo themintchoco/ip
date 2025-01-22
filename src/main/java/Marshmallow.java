@@ -30,21 +30,18 @@ public class Marshmallow {
 
     public static void main(String[] args) {
         System.out.println(logo);
-
         respond("Hello! I'm Marshmallow\nWhat can I do for you?");
 
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                Command command = Command.parse(scanner);
+                String response = command.handle();
+                respond(response);
 
-        while (true) {
-            String input = scanner.nextLine();
-            if (input.equals("bye")) {
-                respond("Bye. Hope to see you again soon!");
-                break;
-            } else {
-                respond(input);
+                if (command.isExit) {
+                    break;
+                }
             }
         }
-
-        scanner.close();
     }
 }
