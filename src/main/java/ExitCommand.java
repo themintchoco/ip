@@ -4,7 +4,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public String handle() {
+    public String handle(TaskStore store) {
         return "Bye. Hope to see you again soon!";
     }
 }

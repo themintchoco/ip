@@ -29,13 +29,15 @@ public class Marshmallow {
     }
 
     public static void main(String[] args) {
+        TaskStore store = new TaskStore();
+
         System.out.println(logo);
         respond("Hello! I'm Marshmallow\nWhat can I do for you?");
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 Command command = Command.parse(scanner);
-                String response = command.handle();
+                String response = command.handle(store);
                 respond(response);
 
                 if (command.isExit) {

@@ -6,12 +6,14 @@ public abstract class Command {
     public static Command parse(Scanner s) {
         String command = s.next();
         switch (command) {
+        case "list":
+            return new ListDisplayCommand();
         case "bye":
             return new ExitCommand();
         default:
-            return new EchoCommand(command + s.nextLine());
+            return new ListAddCommand(command + s.nextLine());
         }
     }
 
-    public abstract String handle();
+    public abstract String handle(TaskStore store);
 }
