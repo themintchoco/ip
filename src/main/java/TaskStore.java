@@ -21,6 +21,10 @@ public class TaskStore {
         return tasks.get(index);
     }
 
+    public int count() {
+        return tasks.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
