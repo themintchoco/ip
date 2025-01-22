@@ -25,7 +25,7 @@ public class TaskStore {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (ListIterator<Task> it = tasks.listIterator(); it.hasNext(); ) {
-            sb.append(it.nextIndex() + 1).append(". ").append(it.next());
+            sb.append(it.nextIndex() + 1).append(".").append(it.next());
 
             if (it.hasNext()) {
                 sb.append("\n");

@@ -8,6 +8,10 @@ public abstract class Command {
         switch (command) {
         case "list":
             return new ListDisplayCommand();
+        case "mark":
+            return new ListTaskMarkCommand(s.nextInt() - 1);
+        case "unmark":
+            return new ListTaskUnmarkCommand(s.nextInt() - 1);
         case "bye":
             return new ExitCommand();
         default:
