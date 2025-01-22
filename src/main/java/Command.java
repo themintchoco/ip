@@ -11,7 +11,7 @@ public abstract class Command {
         case "list":
             return new ListDisplayCommand();
         case "todo":
-            return new ListAddTodoCommand(s.nextLine());
+            return new ListAddTodoCommand(s.nextLine().trim());
         case "deadline":
             Map<String, String> deadlineSwitches = parseSwitches(s.nextLine());
             return new ListAddDeadlineCommand(deadlineSwitches.get(""), deadlineSwitches.get("by"));
