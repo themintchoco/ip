@@ -25,6 +25,8 @@ public abstract class Command {
                 return new ListTaskMarkCommand(s.nextInt() - 1);
             case "unmark":
                 return new ListTaskUnmarkCommand(s.nextInt() - 1);
+            case "delete":
+                return new ListDeleteTaskCommand(s.nextInt() - 1);
             case "bye":
                 return new ExitCommand();
             }

@@ -13,9 +13,9 @@ public class TaskStore {
         tasks.add(task);
     }
 
-    public void removeTask(int index) {
+    public Task removeTask(int index) {
         try {
-            tasks.remove(index);
+            return tasks.remove(index);
         } catch (IndexOutOfBoundsException e) {
             throw new MarshmallowException("I can't find that task! Which one are you referring to?");
         }
