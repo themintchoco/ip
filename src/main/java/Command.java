@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -7,23 +8,29 @@ public abstract class Command {
 
     public static Command parse(Scanner s) {
         String command = s.next();
-        switch (command) {
-        case "list":
-            return new ListDisplayCommand();
-        case "todo":
-            return new ListAddTodoCommand(s.nextLine().trim());
-        case "deadline":
-            Map<String, String> deadlineSwitches = parseSwitches(s.nextLine());
-            return new ListAddDeadlineCommand(deadlineSwitches.get(""), deadlineSwitches.get("by"));
-        case "event":
-            Map<String, String> eventSwitches = parseSwitches(s.nextLine());
-            return new ListAddEventCommand(eventSwitches.get(""), eventSwitches.get("from"), eventSwitches.get("to"));
-        case "mark":
-            return new ListTaskMarkCommand(s.nextInt() - 1);
-        case "unmark":
-            return new ListTaskUnmarkCommand(s.nextInt() - 1);
-        case "bye":
-            return new ExitCommand();
+
+        try {
+            switch (command) {
+            case "list":
+                return new ListDisplayCommand();
+            case "todo":
+                return new ListAddTodoCommand(s.nextLine().trim());
+            case "deadline":
+                Map<String, String> deadlineSwitches = parseSwitches(s.nextLine());
+                return new ListAddDeadlineCommand(deadlineSwitches.get(""), deadlineSwitches.get("by"));
+            case "event":
+                Map<String, String> eventSwitches = parseSwitches(s.nextLine());
+                return new ListAddEventCommand(eventSwitches.get(""), eventSwitches.get("from"), eventSwitches.get("to"));
+            case "mark":
+                return new ListTaskMarkCommand(s.nextInt() - 1);
+            case "unmark":
+                return new ListTaskUnmarkCommand(s.nextInt() - 1);
+            case "bye":
+                return new ExitCommand();
+            }
+        } catch (InputMismatchException e) {
+            s.nextLine();
+            throw new MarshmallowException("Please follow the correct format for the command :(");
         }
 
         return null;

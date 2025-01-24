@@ -36,12 +36,21 @@ public class Marshmallow {
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
-                Command command = Command.parse(scanner);
-                String response = command.handle(store);
-                respond(response);
+                try {
+                    Command command = Command.parse(scanner);
 
-                if (command.isExit) {
-                    break;
+                    if (command == null) {
+                        respond("I'm sorry, but I don't know what that means :(");
+                        continue;
+                    }
+
+                    respond(command.handle(store));
+
+                    if (command.isExit) {
+                        break;
+                    }
+                } catch (MarshmallowException e) {
+                    respond(e.getMessage());
                 }
             }
         }

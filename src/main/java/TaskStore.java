@@ -14,11 +14,19 @@ public class TaskStore {
     }
 
     public void removeTask(int index) {
-        tasks.remove(index);
+        try {
+            tasks.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new MarshmallowException("I can't find that task! Which one are you referring to?");
+        }
     }
 
     public Task getTask(int index) {
-        return tasks.get(index);
+        try {
+            return tasks.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new MarshmallowException("I can't find that task! Which one are you referring to?");
+        }
     }
 
     public int count() {
