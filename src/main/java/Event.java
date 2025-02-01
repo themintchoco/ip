@@ -8,6 +8,10 @@ public class Event extends Task {
         this.endTime = endTime;
     }
 
+    public String toSaveString() {
+        return String.format("E | %s | %s | %s", super.toSaveString(), startTime, endTime);
+    }
+
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to: %s)", super.toString(), startTime, endTime);
