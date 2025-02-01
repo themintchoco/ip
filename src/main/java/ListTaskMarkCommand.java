@@ -9,6 +9,7 @@ public class ListTaskMarkCommand extends Command {
     public String handle(TaskStore store) {
         Task task = store.getTask(idx);
         task.mark();
+        store.save();
         return String.format("Nice! I've marked this task as done:\n  %s", task);
     }
 }
