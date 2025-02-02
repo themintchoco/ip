@@ -30,6 +30,13 @@ public class TextFileStorage<T extends TextFileStorageSaveable,
     public TextFileStorage(String path, TF factory) {
         this.saveFile = new File(path);
         this.saveFile.getParentFile().mkdirs();
+
+        try {
+            this.saveFile.createNewFile();
+        } catch (IOException e) {
+            throw new MarshmallowException("Something went wrong while creating the save file :(");
+        }
+
         this.factory = factory;
     }
 
