@@ -58,8 +58,8 @@ public class TaskList {
         }
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Task> filterTasks(String query) {
+        return tasks.parallelStream().filter(task -> task.getDescription().contains(query)).toList();
     }
 
     public int count() {

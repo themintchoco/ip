@@ -13,6 +13,7 @@ import marshmallow.commands.ListAddEventCommand;
 import marshmallow.commands.ListAddTodoCommand;
 import marshmallow.commands.ListDeleteTaskCommand;
 import marshmallow.commands.ListDisplayCommand;
+import marshmallow.commands.ListFindTaskCommand;
 import marshmallow.commands.ListTaskMarkCommand;
 import marshmallow.commands.ListTaskUnmarkCommand;
 
@@ -38,6 +39,8 @@ public class Parser {
                 return new ListTaskUnmarkCommand(s.nextInt() - 1);
             case "delete":
                 return new ListDeleteTaskCommand(s.nextInt() - 1);
+            case "find":
+                return new ListFindTaskCommand(s.nextLine().trim());
             case "bye":
                 return new ExitCommand();
             }

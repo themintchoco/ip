@@ -10,6 +10,14 @@ public abstract class Task implements TextFileStorageSaveable {
         this.description = description;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
     public void mark() {
         this.isDone = true;
     }
