@@ -38,7 +38,7 @@ public class Marshmallow {
 
                     ui.respond(command.handle(tasks, ui));
 
-                    if (command.isExit) {
+                    if (command.isExit()) {
                         break;
                     }
                 } catch (MarshmallowException e) {

@@ -16,7 +16,8 @@ import marshmallow.storage.Storage;
  * @param <T> Type of items to save.
  * @param <TF> Factory to construct items from save strings.
  */
-public class TextFileStorage<T extends TextFileStorageSaveable, TF extends TextFileStorageConstructable<T>> implements Storage<T> {
+public class TextFileStorage<T extends TextFileStorageSaveable,
+        TF extends TextFileStorageConstructable<T>> implements Storage<T> {
     private File saveFile;
     private TF factory;
 

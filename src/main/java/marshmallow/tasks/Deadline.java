@@ -7,9 +7,10 @@ import java.time.format.DateTimeFormatter;
  * Represents a deadline task.
  */
 public class Deadline extends Task {
-    private LocalDateTime endTime;
     private static DateTimeFormatter dtfParse = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     private static DateTimeFormatter dtfDisplay = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+
+    private LocalDateTime endTime;
 
     /**
      * Constructor for a deadline.
