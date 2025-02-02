@@ -10,10 +10,22 @@ import java.util.List;
 import marshmallow.MarshmallowException;
 import marshmallow.storage.Storage;
 
+/**
+ * Storage driver backed by a plain text file, where each line is a save string.
+ *
+ * @param <T> Type of items to save.
+ * @param <TF> Factory to construct items from save strings.
+ */
 public class TextFileStorage<T extends TextFileStorageSaveable, TF extends TextFileStorageConstructable<T>> implements Storage<T> {
     private File saveFile;
     private TF factory;
 
+    /**
+     * Constructor for TextFileStorage.
+     *
+     * @param path Path to the file to save to.
+     * @param factory Factory to construct items from save strings.
+     */
     public TextFileStorage(String path, TF factory) {
         this.saveFile = new File(path);
         this.saveFile.getParentFile().mkdirs();

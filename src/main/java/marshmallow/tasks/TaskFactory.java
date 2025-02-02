@@ -3,6 +3,9 @@ package marshmallow.tasks;
 import marshmallow.MarshmallowException;
 import marshmallow.storage.textfilestorage.TextFileStorageConstructable;
 
+/**
+ * Factory class for creating tasks from save strings.
+ */
 public class TaskFactory implements TextFileStorageConstructable<Task> {
     public Task constructFromSaveString(String saveString) {
         Task task;
