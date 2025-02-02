@@ -19,6 +19,24 @@ public abstract class Task implements TextFileStorageSaveable {
     }
 
     /**
+     * Returns the description of the task.
+     *
+     * @return The description of the task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Returns true if and only if the task is marked as done.
+     *
+     * @return true if the task is marked as done, false otherwise.
+     */
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    /**
      * Marks the task as done.
      */
     public void mark() {

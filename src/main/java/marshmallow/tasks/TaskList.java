@@ -97,12 +97,13 @@ public class TaskList {
     }
 
     /**
-     * Retrieves all tasks in the task list.
+     * Filters the tasks in the task list by a query.
      *
-     * @return The list of tasks.
+     * @param query The query to filter by.
+     * @return The filtered tasks.
      */
-    public List<Task> getTasks() {
-        return tasks;
+    public List<Task> filterTasks(String query) {
+        return tasks.parallelStream().filter(task -> task.getDescription().contains(query)).toList();
     }
 
     /**
