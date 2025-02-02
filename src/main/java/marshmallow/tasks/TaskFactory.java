@@ -1,3 +1,8 @@
+package marshmallow.tasks;
+
+import marshmallow.MarshmallowException;
+import marshmallow.storage.textfilestorage.TextFileStorageConstructable;
+
 public class TaskFactory implements TextFileStorageConstructable<Task> {
     public Task constructFromSaveString(String saveString) {
         Task task;

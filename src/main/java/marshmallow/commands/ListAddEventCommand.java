@@ -1,3 +1,8 @@
+package marshmallow.commands;
+
+import marshmallow.MarshmallowException;
+import marshmallow.tasks.Event;
+
 public class ListAddEventCommand extends ListAddTaskCommand {
     public ListAddEventCommand(String description, String startTime, String endTime) {
         if (startTime == null) {

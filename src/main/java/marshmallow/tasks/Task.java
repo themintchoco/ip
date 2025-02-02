@@ -1,3 +1,7 @@
+package marshmallow.tasks;
+
+import marshmallow.storage.textfilestorage.TextFileStorageSaveable;
+
 public abstract class Task implements TextFileStorageSaveable {
     private String description;
     private boolean isDone;

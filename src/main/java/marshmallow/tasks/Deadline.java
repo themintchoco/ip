@@ -1,25 +1,25 @@
+package marshmallow.tasks;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
-    private LocalDateTime startTime;
+public class Deadline extends Task {
     private LocalDateTime endTime;
     private static DateTimeFormatter dtfParse = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     private static DateTimeFormatter dtfDisplay = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
 
-    public Event(String description, String startTimeString, String endTimeString) {
+    public Deadline(String description, String endTimeString) {
         super(description);
-        this.startTime = LocalDateTime.parse(startTimeString, dtfParse);
         this.endTime = LocalDateTime.parse(endTimeString, dtfParse);
     }
 
     @Override
     public String toSaveString() {
-        return String.format("E | %s | %s | %s", super.toSaveString(), startTime.format(dtfParse), endTime.format(dtfParse));
+        return String.format("D | %s | %s", super.toSaveString(), endTime.format(dtfParse));
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), startTime.format(dtfDisplay), endTime.format(dtfDisplay));
+        return String.format("[D]%s (by: %s)", super.toString(), endTime.format(dtfDisplay));
     }
 }

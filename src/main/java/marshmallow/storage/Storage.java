@@ -1,3 +1,5 @@
+package marshmallow.storage;
+
 import java.util.List;
 
 public interface Storage<T> {
