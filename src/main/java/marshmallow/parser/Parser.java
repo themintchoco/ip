@@ -16,7 +16,16 @@ import marshmallow.commands.ListDisplayCommand;
 import marshmallow.commands.ListTaskMarkCommand;
 import marshmallow.commands.ListTaskUnmarkCommand;
 
+/**
+ * Parses user input into commands.
+ */
 public class Parser {
+    /**
+     * Parses the user input into a command.
+     *
+     * @param s Scanner to read user input from
+     * @return Command representing the user input, or null if the input is invalid
+     */
     public Command parse(Scanner s) {
         String command = s.next();
 

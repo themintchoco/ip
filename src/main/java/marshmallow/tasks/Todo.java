@@ -1,6 +1,14 @@
 package marshmallow.tasks;
 
+/**
+ * Represents a todo task.
+ */
 public class Todo extends Task {
+    /**
+     * Constructor for a todo.
+     *
+     * @param description The description of the task.
+     */
     public Todo(String description) {
         super(description);
     }
