@@ -6,10 +6,10 @@ public class ListTaskMarkCommand extends Command {
     }
 
     @Override
-    public String handle(TaskStore store) {
-        Task task = store.getTask(idx);
+    public String handle(TaskList tasks, Ui ui) {
+        Task task = tasks.getTask(idx);
         task.mark();
-        store.save();
+        tasks.save();
         return String.format("Nice! I've marked this task as done:\n  %s", task);
     }
 }

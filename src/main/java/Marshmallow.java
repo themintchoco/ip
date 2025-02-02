@@ -1,58 +1,44 @@
 import java.util.Scanner;
 
 public class Marshmallow {
-    private static String logo = "⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⡀⠀⠀⠀⠀\n" +
-                "⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀\n" +
-                "⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁\n" +
-                "⡂⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⡄⠀⠀⠀⠀⠀⠀⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⡀\n" +
-                "⠂⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠁⠀⠀⠀⠀⠀⠀⠙⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄\n" +
-                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠦⠤⠶⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⢨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠆\n" +
-                "⠈⠀⣀⢴⣛⢽⣱⢮⣦⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣔⡎⠷⣇⣏⠯⣆⠀⠁\n" +
-                "⠀⢤⣿⣾⢯⣟⡳⣟⣾⣻⡧⠀⠀⠀⠀⢀⠀⠀⢀⣾⣵⡞⣯⢷⡺⡽⣏⠁⠀\n" +
-                "⠀⢽⢿⣞⣛⣮⡟⣯⣷⣻⣾⡁⠀⠀⠀⠠⢨⣀⣾⣟⡾⣽⡿⣼⣹⢧⡻⢏⠀\n" +
-                "⠄⢼⢿⣽⣿⣗⡿⣽⡻⣿⡶⡇⠄⣀⠀⠀⠻⢿⣹⢾⣽⢯⣷⣳⢯⡯⣟⠃⠀\n" +
-                "⠀⠈⢺⣽⢟⣽⡳⢯⣳⣽⡷⣃⠄⡩⠐⣀⢂⠘⢻⣞⣿⢾⡽⣻⡺⡗⠉⠀⠀\n" +
-                "⠀⠀⠀⣙⠻⣟⣯⣿⣽⡛⢹⠛⠛⠛⠛⠒⠙⠀⠚⡻⢽⣻⣯⣿⡟⠁⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠉⠉⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁⠀⠀⠀⠀⠀";
+    private TextFileStorage<Task, TaskFactory> storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    private static void respond(String response) {
-        System.out.println("    ________________________________________________________");
-        System.out.print("     ");
-        System.out.println(response.replace("\n", "\n     "));
-        System.out.println("    ________________________________________________________\n");
+    public Marshmallow(String path) {
+        ui = new Ui();
+        storage = new TextFileStorage<>("data/tasks.txt", new TaskFactory());
+        tasks = new TaskList(storage);
+
+        ui.greet();
     }
 
-    public static void main(String[] args) {
-        TaskStore store = new TaskStore();
-
-        System.out.println(logo);
-        respond("Hello! I'm Marshmallow\nWhat can I do for you?");
+    public void run() {
+        Parser parser = new Parser();
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 try {
-                    Command command = Command.parse(scanner);
+                    Command command = parser.parse(scanner);
 
                     if (command == null) {
-                        respond("I'm sorry, but I don't know what that means :(");
+                        ui.respond("I'm sorry, but I don't know what that means :(");
                         continue;
                     }
 
-                    respond(command.handle(store));
+                    ui.respond(command.handle(tasks, ui));
 
                     if (command.isExit) {
                         break;
                     }
                 } catch (MarshmallowException e) {
-                    respond(e.getMessage());
+                    ui.respond(e.getMessage());
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Marshmallow("data/tasks.txt").run();
     }
 }

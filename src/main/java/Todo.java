@@ -3,6 +3,7 @@ public class Todo extends Task {
         super(description);
     }
 
+    @Override
     public String toSaveString() {
         return String.format("T | %s", super.toSaveString());
     }

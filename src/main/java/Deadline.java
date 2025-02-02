@@ -11,6 +11,7 @@ public class Deadline extends Task {
         this.endTime = LocalDateTime.parse(endTimeString, dtfParse);
     }
 
+    @Override
     public String toSaveString() {
         return String.format("D | %s | %s", super.toSaveString(), endTime.format(dtfParse));
     }

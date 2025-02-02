@@ -1,52 +1,30 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class TaskStore {
+public class TaskList {
     private List<Task> tasks;
-    private File saveFile;
+    private Storage<Task> storage;
 
-    public TaskStore() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
-
-        this.saveFile = new File("data/tasks.txt");
-        this.saveFile.getParentFile().mkdirs();
-
-        if (this.saveFile.exists()) {
-            load();
-        }
     }
 
-    private void load() {
-        try (FileReader reader = new FileReader(this.saveFile)) {
-            int data;
-            StringBuilder sb = new StringBuilder();
-            while ((data = reader.read()) != -1) {
-                if (data == '\n') {
-                    tasks.add(Task.fromSaveString(sb.toString()));
-                    sb.setLength(0);
-                } else {
-                    sb.append((char) data);
-                }
-            }
-        } catch (IOException e) {
-            throw new MarshmallowException("Something went wrong while loading your tasks :(");
-        }
+    public TaskList(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public TaskList(Storage<Task> storage) {
+        this.storage = storage;
+        this.tasks = storage.load();
     }
 
     public void save() {
-        try (FileWriter writer = new FileWriter(this.saveFile)) {
-            for (Task task : tasks) {
-                writer.write(task.toSaveString());
-                writer.write("\n");
-            }
-        } catch (IOException e) {
-            throw new MarshmallowException("Something went wrong while saving your tasks :(");
+        if (storage == null) {
+            return;
         }
+
+        storage.save(tasks);
     }
 
     public void addTask(Task task) {
@@ -73,6 +51,10 @@ public class TaskStore {
         } catch (IndexOutOfBoundsException e) {
             throw new MarshmallowException("I can't find that task! Which one are you referring to?");
         }
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     public int count() {

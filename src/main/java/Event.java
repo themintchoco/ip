@@ -13,6 +13,7 @@ public class Event extends Task {
         this.endTime = LocalDateTime.parse(endTimeString, dtfParse);
     }
 
+    @Override
     public String toSaveString() {
         return String.format("E | %s | %s | %s", super.toSaveString(), startTime.format(dtfParse), endTime.format(dtfParse));
     }
