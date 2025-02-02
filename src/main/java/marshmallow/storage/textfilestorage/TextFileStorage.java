@@ -10,7 +10,8 @@ import java.util.List;
 import marshmallow.MarshmallowException;
 import marshmallow.storage.Storage;
 
-public class TextFileStorage<T extends TextFileStorageSaveable, TF extends TextFileStorageConstructable<T>> implements Storage<T> {
+public class TextFileStorage<T extends TextFileStorageSaveable,
+        TF extends TextFileStorageConstructable<T>> implements Storage<T> {
     private File saveFile;
     private TF factory;
 

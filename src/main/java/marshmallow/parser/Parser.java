@@ -31,7 +31,9 @@ public class Parser {
                 return new ListAddDeadlineCommand(deadlineSwitches.get(""), deadlineSwitches.get("by"));
             case "event":
                 Map<String, String> eventSwitches = parseSwitches(s.nextLine());
-                return new ListAddEventCommand(eventSwitches.get(""), eventSwitches.get("from"), eventSwitches.get("to"));
+                return new ListAddEventCommand(eventSwitches.get(""),
+                        eventSwitches.get("from"),
+                        eventSwitches.get("to"));
             case "mark":
                 return new ListTaskMarkCommand(s.nextInt() - 1);
             case "unmark":
@@ -40,6 +42,8 @@ public class Parser {
                 return new ListDeleteTaskCommand(s.nextInt() - 1);
             case "bye":
                 return new ExitCommand();
+            default:
+                // passthrough
             }
         } catch (InputMismatchException e) {
             s.nextLine();

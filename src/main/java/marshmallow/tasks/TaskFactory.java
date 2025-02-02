@@ -18,7 +18,8 @@ public class TaskFactory implements TextFileStorageConstructable<Task> {
         } else if (parts[0].equals("D")) {
             task = new Deadline(description, parts[3]);
         } else {
-            throw new MarshmallowException("I encountered a task I don't recognise! Are you using an old version of Marshmallow?");
+            throw new MarshmallowException(
+                    "I encountered a task I don't recognise! Are you using an old version of Marshmallow?");
         }
 
         if (isDone) {

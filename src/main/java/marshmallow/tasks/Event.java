@@ -4,10 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
     private static DateTimeFormatter dtfParse = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     private static DateTimeFormatter dtfDisplay = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     public Event(String description, String startTimeString, String endTimeString) {
         super(description);
@@ -17,11 +18,17 @@ public class Event extends Task {
 
     @Override
     public String toSaveString() {
-        return String.format("E | %s | %s | %s", super.toSaveString(), startTime.format(dtfParse), endTime.format(dtfParse));
+        return String.format("E | %s | %s | %s",
+                super.toSaveString(),
+                startTime.format(dtfParse),
+                endTime.format(dtfParse));
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), startTime.format(dtfDisplay), endTime.format(dtfDisplay));
+        return String.format("[E]%s (from: %s to: %s)",
+                super.toString(),
+                startTime.format(dtfDisplay),
+                endTime.format(dtfDisplay));
     }
 }
