@@ -1,7 +1,6 @@
 package marshmallow.commands;
 
 import marshmallow.tasks.TaskList;
-import marshmallow.ui.Ui;
 
 public class ExitCommand extends Command {
     public ExitCommand() {
@@ -9,7 +8,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public String handle(TaskList tasks, Ui ui) {
+    public String handle(TaskList tasks) {
         return "Bye. Hope to see you again soon!";
     }
 }

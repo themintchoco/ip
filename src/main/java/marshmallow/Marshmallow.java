@@ -8,47 +8,72 @@ import marshmallow.storage.textfilestorage.TextFileStorage;
 import marshmallow.tasks.Task;
 import marshmallow.tasks.TaskFactory;
 import marshmallow.tasks.TaskList;
-import marshmallow.ui.Ui;
 
+/**
+ * Represents the main class of the Marshmallow chatbot.
+ */
 public class Marshmallow {
     private TextFileStorage<Task, TaskFactory> storage;
     private TaskList tasks;
-    private Ui ui;
+    private Parser parser;
+    private MarshmallowDelegate delegate;
 
+    /**
+     * Constructor for Marshmallow.
+     *
+     * @param path The path to the file to store tasks.
+     */
     public Marshmallow(String path) {
-        ui = new Ui();
-        storage = new TextFileStorage<>("data/tasks.txt", new TaskFactory());
-        tasks = new TaskList(storage);
-
-        ui.greet();
+        this.storage = new TextFileStorage<>(path, new TaskFactory());
+        this.tasks = new TaskList(storage);
+        this.parser = new Parser();
     }
 
-    public void run() {
-        Parser parser = new Parser();
+    /**
+     * Sets the delegate to receive Marshmallow events.
+     *
+     * @param delegate The delegate.
+     */
+    public void setDelegate(MarshmallowDelegate delegate) {
+        this.delegate = delegate;
+    }
 
-        try (Scanner scanner = new Scanner(System.in)) {
-            while (true) {
-                try {
-                    Command command = parser.parse(scanner);
+    /**
+     * Issues a command to Marshmallow.
+     *
+     * @param s The scanner to read the command from.
+     * @return The command issued.
+     */
+    public Command issue(Scanner s) {
+        try {
+            Command command = parser.parse(s);
 
-                    if (command == null) {
-                        ui.respond("I'm sorry, but I don't know what that means :(");
-                        continue;
-                    }
-
-                    ui.respond(command.handle(tasks, ui));
-
-                    if (command.isExit()) {
-                        break;
-                    }
-                } catch (MarshmallowException e) {
-                    ui.respond(e.getMessage());
-                }
+            if (delegate == null) {
+                return command;
             }
+
+            if (command == null) {
+                delegate.marshmallowRespond("I'm sorry, but I don't know what that means :(");
+                return null;
+            }
+
+            delegate.marshmallowRespond(command.handle(tasks));
+
+            return command;
+        } catch (MarshmallowException e) {
+            delegate.marshmallowRespond(e.getMessage());
         }
+
+        return null;
     }
 
-    public static void main(String[] args) {
-        new Marshmallow("data/tasks.txt").run();
+    /**
+     * Issues a command to Marshmallow.
+     *
+     * @param s The command string.
+     * @return The command issued.
+     */
+    public Command issue(String s) {
+        return issue(new Scanner(s));
     }
 }

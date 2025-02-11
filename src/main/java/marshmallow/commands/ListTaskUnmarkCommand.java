@@ -2,7 +2,6 @@ package marshmallow.commands;
 
 import marshmallow.tasks.Task;
 import marshmallow.tasks.TaskList;
-import marshmallow.ui.Ui;
 
 public class ListTaskUnmarkCommand extends Command {
     private int idx;
@@ -12,7 +11,7 @@ public class ListTaskUnmarkCommand extends Command {
     }
 
     @Override
-    public String handle(TaskList tasks, Ui ui) {
+    public String handle(TaskList tasks) {
         Task task = tasks.getTask(idx);
         task.unmark();
         tasks.save();
