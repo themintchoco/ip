@@ -65,6 +65,16 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Parses the user input into a command.
+     *
+     * @param s String representing the user input
+     * @return Command representing the user input, or null if the input is invalid
+     */
+    public Command parse(String s) {
+        return parse(new Scanner(s));
+    }
+
     private Map<String, String> parseSwitches(String line) {
         Map<String, String> switches = new HashMap<>();
         String[] parts = line.split("/");
