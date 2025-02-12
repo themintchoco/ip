@@ -11,6 +11,8 @@ public class ListFindTaskCommand extends Command {
 
     @Override
     public String handle(TaskList tasks) {
+        assert tasks != null : "Task list should not be null";
+
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
         sb.append(new TaskList(tasks.filterTasks(query)).toString());
