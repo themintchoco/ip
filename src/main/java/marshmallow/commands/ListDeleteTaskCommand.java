@@ -3,9 +3,17 @@ package marshmallow.commands;
 import marshmallow.tasks.Task;
 import marshmallow.tasks.TaskList;
 
+/**
+ * Represents a command to delete a task from the task list.
+ */
 public class ListDeleteTaskCommand extends Command {
     private int idx;
 
+    /**
+     * Constructs a command to delete a task from the task list.
+     *
+     * @param idx The index of the task to delete.
+     */
     public ListDeleteTaskCommand(int idx) {
         this.idx = idx;
     }

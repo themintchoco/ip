@@ -2,7 +2,13 @@ package marshmallow.commands;
 
 import marshmallow.tasks.TaskList;
 
+/**
+ * Represents a command to exit the application.
+ */
 public class ExitCommand extends Command {
+    /**
+     * Constructs an exit command.
+     */
     public ExitCommand() {
         this.isExit = true;
     }

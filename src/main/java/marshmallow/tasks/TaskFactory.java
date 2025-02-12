@@ -7,6 +7,11 @@ import marshmallow.storage.textfilestorage.TextFileStorageConstructable;
  * Factory class for creating tasks from save strings.
  */
 public class TaskFactory implements TextFileStorageConstructable<Task> {
+    /**
+     * Constructs a task from a save string.
+     *
+     * @param saveString The save string to construct the task from.
+     */
     public Task constructFromSaveString(String saveString) {
         Task task;
 

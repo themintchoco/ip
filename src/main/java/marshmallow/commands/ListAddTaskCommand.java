@@ -3,6 +3,9 @@ package marshmallow.commands;
 import marshmallow.tasks.Task;
 import marshmallow.tasks.TaskList;
 
+/**
+ * Represents a command to add a task to the task list.
+ */
 public abstract class ListAddTaskCommand extends Command {
     protected Task task;
 
