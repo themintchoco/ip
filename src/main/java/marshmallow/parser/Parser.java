@@ -1,7 +1,9 @@
 package marshmallow.parser;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -28,31 +30,36 @@ public class Parser {
      * @return Command representing the user input, or null if the input is invalid
      */
     public Command parse(Scanner s) {
-        String command = s.next();
+        String cmd = s.next().toUpperCase();
+
+        List<Keyword> candidates = Arrays.stream(Keyword.values()).filter(k -> k.toString().startsWith(cmd)).toList();
+        if (candidates.size() != 1) {
+            return null;
+        }
 
         try {
-            switch (command) {
-            case "list":
+            switch (candidates.get(0)) {
+            case LIST:
                 return new ListDisplayCommand();
-            case "todo":
+            case TODO:
                 return new ListAddTodoCommand(s.nextLine().trim());
-            case "deadline":
+            case DEADLINE:
                 Map<String, String> deadlineSwitches = parseSwitches(s.nextLine());
                 return new ListAddDeadlineCommand(deadlineSwitches.get(""), deadlineSwitches.get("by"));
-            case "event":
+            case EVENT:
                 Map<String, String> eventSwitches = parseSwitches(s.nextLine());
                 return new ListAddEventCommand(eventSwitches.get(""),
                         eventSwitches.get("from"),
                         eventSwitches.get("to"));
-            case "mark":
+            case MARK:
                 return new ListTaskMarkCommand(s.nextInt() - 1);
-            case "unmark":
+            case UNMARK:
                 return new ListTaskUnmarkCommand(s.nextInt() - 1);
-            case "delete":
+            case DELETE:
                 return new ListDeleteTaskCommand(s.nextInt() - 1);
-            case "find":
+            case FIND:
                 return new ListFindTaskCommand(s.nextLine().trim());
-            case "bye":
+            case BYE:
                 return new ExitCommand();
             default:
                 // passthrough
