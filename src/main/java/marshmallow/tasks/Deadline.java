@@ -1,14 +1,22 @@
 package marshmallow.tasks;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+
+import com.mdimension.jchronic.Chronic;
+import com.mdimension.jchronic.Options;
+import com.mdimension.jchronic.tags.Pointer;
+import com.mdimension.jchronic.utils.Span;
+
+import marshmallow.MarshmallowException;
 
 /**
  * Represents a deadline task.
  */
 public class Deadline extends Task {
-    private static DateTimeFormatter dtfParse = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    private static DateTimeFormatter dtfDisplay = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     private LocalDateTime endTime;
 
@@ -16,20 +24,26 @@ public class Deadline extends Task {
      * Constructor for a deadline.
      *
      * @param description The description of the deadline.
-     * @param endTimeString The end time of the deadline. Must be in the format `dd-MM-yyyy HHmm`.
+     * @param endTimeString The end time of the deadline.
      */
     public Deadline(String description, String endTimeString) {
         super(description);
-        this.endTime = LocalDateTime.parse(endTimeString, dtfParse);
+
+        Span parsedSpan = Chronic.parse(endTimeString, new Options(Pointer.PointerType.FUTURE));
+        if (parsedSpan == null) {
+            throw new MarshmallowException("I don't understand the time :(");
+        }
+
+        this.endTime = Instant.ofEpochSecond(parsedSpan.getBegin()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     @Override
     public String toSaveString() {
-        return String.format("D | %s | %s", super.toSaveString(), endTime.format(dtfParse));
+        return String.format("D | %s | %s", super.toSaveString(), endTime.format(formatter));
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), endTime.format(dtfDisplay));
+        return String.format("[D]%s (by: %s)", super.toString(), endTime.format(formatter));
     }
 }
