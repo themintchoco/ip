@@ -12,6 +12,8 @@ public class ListTaskUnmarkCommand extends Command {
 
     @Override
     public String handle(TaskList tasks) {
+        assert tasks != null : "Task list should not be null";
+
         Task task = tasks.getTask(idx);
         task.unmark();
         tasks.save();
