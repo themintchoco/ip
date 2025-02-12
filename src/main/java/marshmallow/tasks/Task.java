@@ -24,7 +24,7 @@ public abstract class Task implements TextFileStorageSaveable {
      * @return The description of the task.
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**
@@ -33,7 +33,7 @@ public abstract class Task implements TextFileStorageSaveable {
      * @return true if the task is marked as done, false otherwise.
      */
     public boolean isDone() {
-        return this.isDone;
+        return isDone;
     }
 
     /**

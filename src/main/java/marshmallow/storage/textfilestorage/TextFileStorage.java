@@ -44,7 +44,7 @@ public class TextFileStorage<T extends TextFileStorageSaveable,
     public List<T> load() {
         List<T> items = new ArrayList<>();
 
-        try (FileReader reader = new FileReader(this.saveFile)) {
+        try (FileReader reader = new FileReader(saveFile)) {
             int data;
             StringBuilder sb = new StringBuilder();
             while ((data = reader.read()) != -1) {
@@ -64,7 +64,7 @@ public class TextFileStorage<T extends TextFileStorageSaveable,
 
     @Override
     public void save(List<T> items) {
-        try (FileWriter writer = new FileWriter(this.saveFile)) {
+        try (FileWriter writer = new FileWriter(saveFile)) {
             for (T item : items) {
                 writer.write(item.toSaveString());
                 writer.write("\n");

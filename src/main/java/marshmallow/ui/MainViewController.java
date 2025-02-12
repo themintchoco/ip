@@ -27,16 +27,16 @@ public class MainViewController extends AnchorPane implements MarshmallowDelegat
 
     private Marshmallow marshmallow;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image marshmallowImage = new Image(this.getClass().getResourceAsStream("/images/marshmallow.png"));
+    private Image userImage = new Image(getClass().getResourceAsStream("/images/user.png"));
+    private Image marshmallowImage = new Image(getClass().getResourceAsStream("/images/marshmallow.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setMarshmallow(Marshmallow m) {
-        marshmallow = m;
+    public void setMarshmallow(Marshmallow marshmallow) {
+        this.marshmallow = marshmallow;
     }
 
     @Override
