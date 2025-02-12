@@ -60,9 +60,9 @@ public class DialogBox extends HBox {
     }
 
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        ObservableList<Node> children = FXCollections.observableArrayList(getChildren());
+        Collections.reverse(children);
+        getChildren().setAll(children);
         setAlignment(Pos.TOP_LEFT);
         label.getStyleClass().add("reply-label");
     }
