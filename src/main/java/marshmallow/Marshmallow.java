@@ -48,16 +48,16 @@ public class Marshmallow {
         try {
             Command command = parser.parse(s);
 
-            if (delegate == null) {
-                return command;
-            }
-
             if (command == null) {
                 delegate.marshmallowRespond("I'm sorry, but I don't know what that means :(");
                 return null;
             }
 
-            delegate.marshmallowRespond(command.handle(tasks));
+            String response = command.handle(tasks);
+
+            if (delegate != null) {
+                delegate.marshmallowRespond(response);
+            }
 
             return command;
         } catch (MarshmallowException e) {
