@@ -8,6 +8,9 @@ public abstract class ListAddTaskCommand extends Command {
 
     @Override
     public String handle(TaskList tasks) {
+        assert tasks != null : "Task list should not be null";
+        assert task != null : "Task should not be null";
+
         tasks.addTask(task);
         return String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
                 task,

@@ -12,6 +12,8 @@ public class ListDeleteTaskCommand extends Command {
 
     @Override
     public String handle(TaskList tasks) {
+        assert tasks != null : "Task list should not be null";
+
         Task task = tasks.removeTask(idx);
         return String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
                 task,
