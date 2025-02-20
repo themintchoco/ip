@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import marshmallow.MarshmallowException;
@@ -67,6 +68,8 @@ public class Parser {
         } catch (InputMismatchException e) {
             s.nextLine();
             throw new MarshmallowException("Please follow the correct format for the command :(");
+        } catch (NoSuchElementException e) {
+            throw new MarshmallowException("Please provide the required information for the command :(");
         }
 
         return null;
