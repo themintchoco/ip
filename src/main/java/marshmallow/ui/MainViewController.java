@@ -48,7 +48,11 @@ public class MainViewController extends AnchorPane implements MarshmallowDelegat
 
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
+        String input = userInput.getText().trim();
+
+        if (input.isEmpty()) {
+            return;
+        }
 
         dialogContainer.getChildren().add(
             new DialogBox(input, userImage, DialogBoxAlignment.LEFT)
