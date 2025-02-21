@@ -10,6 +10,11 @@ public class ListDisplayCommand extends Command {
     public String handle(TaskList tasks) {
         assert tasks != null : "Task list should not be null";
 
-        return tasks.toString();
+        String response = tasks.toString();
+        if (response.isBlank()) {
+            return "You have no tasks!";
+        }
+
+        return response;
     }
 }
