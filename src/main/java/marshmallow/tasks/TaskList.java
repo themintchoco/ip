@@ -103,7 +103,8 @@ public class TaskList {
      * @return The filtered tasks.
      */
     public List<Task> filterTasks(String query) {
-        return tasks.parallelStream().filter(task -> task.getDescription().contains(query)).toList();
+        return tasks.parallelStream().filter(task ->
+                task.getDescription().toLowerCase().contains(query.toLowerCase())).toList();
     }
 
     /**
