@@ -1,7 +1,7 @@
 package marshmallow.ui;
 
 /**
- * Alignment for dialog boxes.
+ * Represents alignments for dialog boxes.
  */
 public enum DialogBoxAlignment {
     LEFT, RIGHT

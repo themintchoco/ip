@@ -15,14 +15,14 @@ public class TaskList {
     private Storage<Task> storage;
 
     /**
-     * Constructor for an empty task list.
+     * Constructs an empty task list.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Constructor for a task list with existing tasks.
+     * Constructs a task list with existing tasks.
      *
      * @param tasks The existing tasks.
      */
@@ -31,7 +31,7 @@ public class TaskList {
     }
 
     /**
-     * Constructor for a task list, backed by a storage driver.
+     * Constructs a task list, backed by a storage driver.
      *
      * @param storage The storage driver.
      */

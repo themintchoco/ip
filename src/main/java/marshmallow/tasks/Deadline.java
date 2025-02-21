@@ -21,7 +21,7 @@ public class Deadline extends Task {
     private LocalDateTime endTime;
 
     /**
-     * Constructor for a deadline.
+     * Constructs a deadline.
      *
      * @param description The description of the deadline.
      * @param endTimeString The end time of the deadline.

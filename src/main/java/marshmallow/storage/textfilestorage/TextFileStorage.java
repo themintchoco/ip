@@ -22,7 +22,7 @@ public class TextFileStorage<T extends TextFileStorageSaveable,
     private TF factory;
 
     /**
-     * Constructor for TextFileStorage.
+     * Constructs the storage driver.
      *
      * @param path Path to the file to save to.
      * @param factory Factory to construct items from save strings.

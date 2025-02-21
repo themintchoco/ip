@@ -19,7 +19,7 @@ public class Marshmallow {
     private MarshmallowDelegate delegate;
 
     /**
-     * Constructor for Marshmallow.
+     * Constructs Marshmallow.
      *
      * @param path The path to the file to store tasks.
      */

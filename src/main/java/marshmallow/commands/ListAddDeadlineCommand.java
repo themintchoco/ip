@@ -8,7 +8,7 @@ import marshmallow.tasks.Deadline;
  */
 public class ListAddDeadlineCommand extends ListAddTaskCommand {
     /**
-     * Constructor for a command to add a deadline task to the task list.
+     * Constructs a command to add a deadline task to the task list.
      *
      * @param description Description of the deadline task.
      * @param endTime End time of the deadline task.

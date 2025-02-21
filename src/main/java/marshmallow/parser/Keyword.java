@@ -1,7 +1,7 @@
 package marshmallow.parser;
 
 /**
- * Keywords recognized by the parser.
+ * Represents keywords recognized by the parser.
  */
 public enum Keyword {
     LIST,

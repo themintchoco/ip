@@ -7,14 +7,14 @@ import java.util.List;
  */
 public interface Storage<T> {
     /**
-     * Load data from storage.
+     * Loads data from storage.
      *
      * @return List of items loaded from storage.
      */
     public List<T> load();
 
     /**
-     * Save data to storage.
+     * Saves data to storage.
      *
      * @param items List of items to save.
      */

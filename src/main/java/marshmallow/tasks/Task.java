@@ -10,7 +10,7 @@ public abstract class Task implements TextFileStorageSaveable {
     private boolean isDone;
 
     /**
-     * Constructor for a task.
+     * Constructs a task.
      *
      * @param description The description of the task.
      */

@@ -8,7 +8,7 @@ import marshmallow.tasks.Event;
  */
 public class ListAddEventCommand extends ListAddTaskCommand {
     /**
-     * Constructor for a command to add an event task to the task list.
+     * Constructs a command to add an event task to the task list.
      *
      * @param description Description of the event task.
      * @param startTime Start time of the event task.

@@ -8,7 +8,7 @@ import marshmallow.tasks.Todo;
  */
 public class ListAddTodoCommand extends ListAddTaskCommand {
     /**
-     * Constructor for a command to add a todo task to the task list.
+     * Constructs a command to add a todo task to the task list.
      *
      * @param description Description of the todo task.
      */
